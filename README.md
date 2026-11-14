@@ -53,15 +53,6 @@ docker compose up --build
 
 The `-v` command permanently deletes the local PostgreSQL data. Use it only when you intentionally want a clean reset.
 
-## Useful commands
-
-```bash
-docker compose ps
-docker compose logs -f api
-docker compose logs -f web
-docker compose logs -f db
-```
-
 ## Project structure
 
 ```text
@@ -88,21 +79,4 @@ mgh-portal/
 ├── docker-compose.yml
 ├── .env.example
 └── README.md
-```
 
-## Troubleshooting
-
-- **Docker command not found:** install/start Docker Desktop and reopen the terminal.
-- **Port already in use:** stop the other process using 5173 or 4000, or change the host-side port mapping in `docker-compose.yml`.
-- **Database connection error:** check `docker compose ps`; the API starts only after the database health check passes. Inspect `docker compose logs db` and `docker compose logs api`.
-- **Login fails after a previous database run:** reset only if acceptable using `docker compose down -v`, then start again.
-- **Frontend cannot reach API:** verify `VITE_API_URL` and that port 4000 is reachable.
-- **Changes are not reflected:** rebuild the relevant image with `docker compose up --build`.
-
-## Confidentiality and Git
-
-Create a **private** GitHub/GitLab repository. Never enable public visibility, Pages, public deployments, or public artifacts. Add only the requested evaluator collaborator. Do not commit `.env` files, access tokens, real personal data, or credentials other than the explicitly fictional seeded local demo credentials.
-
-## Documentation
-
-Read the documents in `docs/` in this order: BRD → PRD → TRD → TEST_PLAN → ADR. They explain the business need, product decisions, technical design, and verification approach.
